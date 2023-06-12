@@ -18,9 +18,11 @@ public class JavaApplication5 {
 
 
 
-    private int studentId;
-    private String name;
-    private String course;
+     int studentId;
+    String name;
+     String course;
+    String u="root";
+    String p="Jatin@1234";
 
     public JavaApplication5(int studentId, String name, String course) {
         this.studentId = studentId;
@@ -32,17 +34,17 @@ public class JavaApplication5 {
         PreparedStatement preparedStatement = null;
 
         try {
-            // Establish database connection
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/enrollment", "root", "Jatin@1234");
+        
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/enrollment", u, p);
 
-            // Prepare SQL statement
+      
             String sql = "INSERT INTO students (student_id, name, course) VALUES (?, ?, ?)";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, studentId);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, course);
 
-            // Execute SQL statement
+
             preparedStatement.executeUpdate();
 
             System.out.println("Enrollment successful!");
